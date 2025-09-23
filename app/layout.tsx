@@ -1,5 +1,4 @@
 import "./globals.css";
-import Link from "next/link";
 export const metadata = { title: "B369 | Agente Inmobiliario Interno", description: "Uso interno" };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

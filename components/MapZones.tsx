@@ -1,1 +1,1 @@
-// MapZones code (see explanation)
+export default function MapZones(){return <div>Mapa</div>}

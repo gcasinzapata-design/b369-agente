@@ -1,1 +1,1 @@
-// Chat component code (see explanation)
+export default function Chat(){return <div>Chat</div>}

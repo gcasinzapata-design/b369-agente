@@ -1,1 +1,1 @@
-// FilterForm code (see explanation)
+export default function FilterForm(){return <div>Form</div>}
