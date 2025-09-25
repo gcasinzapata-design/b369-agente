@@ -1,3 +1,4 @@
+// lib/providers.ts
 export const TARGET_SITES = [
   "urbania.pe",
   "adondevivir.com",
