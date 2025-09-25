@@ -1,3 +1,4 @@
+// lib/normalize.ts
 export function normalizeItem(item: any) {
   const link = item.link || item.url;
   return {
@@ -30,11 +31,11 @@ function extractPrice(text?: string) {
   const m = text.match(/(?:USD|\$|S\/\.?|S\/)\s?[\d.,]+/i);
   return m ? m[0].replace("S/.", "S/") : undefined;
 }
-function extractLocation(text: string) {
+function extractLocation(text?: string) {
   const m = text.match(/(Miraflores|San Isidro|Barranco|Surco|Magdalena|San Borja|Lince)/i);
   return m?.[0];
 }
-function extractFeatures(text: string) {
+function extractFeatures(text?: string) {
   const feats: string[] = [];
   if (/balc[oó]n/i.test(text)) feats.push("Balcón");
   if (/vista al mar/i.test(text)) feats.push("Vista al mar");
