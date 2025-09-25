@@ -1,17 +1,1 @@
-import "./globals.css";
-import Link from "next/link";
-export const metadata = { title: "B369 | Agente Inmobiliario Interno", description: "Uso interno" };
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="es">
-      <body className="min-h-screen bg-neutral-50 text-neutral-900">
-        <header className="border-b bg-white">
-          <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-            <a href="/" className="font-semibold">B369 • Agente Inmobiliario</a>
-          </div>
-        </header>
-        <main className="mx-auto max-w-6xl px-4 py-6">{children}</main>
-      </body>
-    </html>
-  );
-}
+import './globals.css'; export const metadata={title:'B369 Agent'}; export default function RootLayout({children}:{children:React.ReactNode}){return (<html lang="es"><head><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/></head><body><header style={{padding:'12px',borderBottom:'1px solid #eee'}}><a href='/'>B369 • Agente</a></header><main style={{maxWidth:1100,margin:'20px auto'}}>{children}</main></body></html>);}
