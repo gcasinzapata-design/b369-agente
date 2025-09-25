@@ -1,4 +1,3 @@
-// lib/geo.ts
 export function haversineKm(a: {lat:number;lng:number}, b:{lat:number;lng:number}) {
   const R = 6371;
   const dLat = (b.lat - a.lat) * Math.PI/180;
