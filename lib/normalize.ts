@@ -1,4 +1,3 @@
-// lib/normalize.ts
 export function normalizeItem(item: any) {
   const link = item.link || item.url;
   return {
