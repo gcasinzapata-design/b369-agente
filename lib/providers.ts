@@ -1,4 +1,3 @@
-// lib/providers.ts
 export const TARGET_SITES = [
   "urbania.pe",
   "adondevivir.com",
@@ -18,7 +17,5 @@ export function buildQueries(filters: any) {
   ].filter(Boolean).join(" ");
 
   const base = `${words}`.trim();
-  const queries = TARGET_SITES.map(site => `site:${site} ${base}`);
-  queries.push(`${base} departamento venta alquiler Lima`);
-  return queries;
+  return TARGET_SITES.map(site => `site:${site} ${base}`).concat([`${base} departamento venta alquiler Lima`]);
 }
