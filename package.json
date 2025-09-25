@@ -9,8 +9,8 @@
     "postinstall": "prisma generate || true"
   },
     "devDependencies": {
-    "typescript": "5.5.4",
-    "@types/react": "18.2.73",
-    "@types/node": "20.11.30"
-  }
+  "typescript": "^5.x.x",
+  "@types/react": "^18.x.x",
+  "@types/node": "^20.x.x"
+}
 }
