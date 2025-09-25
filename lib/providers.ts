@@ -1,1 +1,2 @@
-export const TARGET_SITES = ["urbania.pe","adondevivir.com","properati.pe","babilonia.pe"];
+export const TARGET_SITES = ['urbania.pe','adondevivir.com','properati.pe','babilonia.pe','laencontre.com.pe','olx.com.pe/inmuebles'];
+export function buildQueries(filters:any){const words=[`"${filters.bedrooms} dormitorios"`,filters.bathrooms?`"${filters.bathrooms} baños"`:'',filters.balcony?`"balcón"`:'',`"${filters.district}"`].filter(Boolean).join(' ');const base=words;return TARGET_SITES.map(s=>`site:${s} ${base}`).concat([`${base} departamento venta alquiler Lima`]);}

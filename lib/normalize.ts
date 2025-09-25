@@ -1,3 +1,3 @@
-export function normalizeItem(item:any){return {title:item.title||"Propiedad",url:item.link,source:new URL(item.link).hostname,summary:item.snippet};}
-export function dedupe(list:any[]){const seen=new Set();return list.filter(x=>{if(seen.has(x.url))return false;seen.add(x.url);return true;});}
-export function priceWithin(t:string|undefined,min:number|undefined,max:number|undefined){return true;}
+export function normalizeItem(item:any){const link=item.link||item.url;return {title:item.title||item.htmlTitle||'Propiedad',url:link,source: (link? new URL(link).hostname.replace('www.',''):'fuente'),price: item.snippet?.match(/(?:USD|\$|S\/\.?|S\/)\s?[\d.,]+/i)?.[0],location: item.snippet?.match(/(Miraflores|San Isidro|Barranco|Surco|Magdalena|San Borja|Lince)/i)?.[0],summary: (item.snippet||'').replace(/\s+/g,' ').trim()};}
+export function dedupe(list:any[]){const s=new Set();return list.filter(x=>{if(!x.url) return false; if(s.has(x.url)) return false; s.add(x.url); return true;});}
+export function priceWithin(){return true;}
