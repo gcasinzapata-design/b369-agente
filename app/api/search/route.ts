@@ -1,34 +1,28 @@
-import { NextRequest, NextResponse } from "next/server";
-import axios from "axios";
-
+import { NextRequest, NextResponse } from "next/server";   // 👈 IMPORTANTE
 import { buildQueries, TARGET_SITES } from "../../../lib/providers";
 import { dedupe, normalizeItem, priceWithin } from "../../../lib/normalize";
 import { haversineKm, geocodeDistrictCentroid } from "../../../lib/geo";
+import axios from "axios";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const q = buildQueries(body);
-
     const key = process.env.GOOGLE_API_KEY;
     const cx = process.env.GOOGLE_CSE_ID;
     const timeout = Number(process.env.FETCH_TIMEOUT_MS || 10000);
+    const resultsRaw: any[] = [];
 
     if (!key || !cx) {
-      return NextResponse.json({
-        results: [],
-        alternatives: [],
-        error: "Faltan GOOGLE_API_KEY o GOOGLE_CSE_ID",
-      });
+      return NextResponse.json(
+        { results: [], alternatives: [], error: "Faltan GOOGLE_API_KEY o GOOGLE_CSE_ID" },
+        { status: 500 }
+      );
     }
 
-    const resultsRaw: any[] = [];
     for (const query of q) {
       try {
-        const url = `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&q=${encodeURIComponent(
-          query
-        )}&num=8`;
-
+        const url = `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&q=${encodeURIComponent(query)}&num=8`;
         const { data } = await axios.get(url, { timeout });
         resultsRaw.push(...(data.items || []));
       } catch {
@@ -46,25 +40,15 @@ export async function POST(req: NextRequest) {
           timeout,
           headers: { "User-Agent": "Mozilla/5.0" },
         });
-
         const phone = html.match(/(\+51\s?)?9\d{8}/)?.[0];
-        enriched.push({
-          ...item,
-          contactPhone: phone,
-          lat: centroid?.lat,
-          lng: centroid?.lng,
-        });
+        enriched.push({ ...item, contactPhone: phone, lat: centroid?.lat, lng: centroid?.lng });
       } catch {
-        enriched.push({
-          ...item,
-          lat: centroid?.lat,
-          lng: centroid?.lng,
-        });
+        enriched.push({ ...item, lat: centroid?.lat, lng: centroid?.lng });
       }
     }
 
     const results = enriched.slice(0, 10);
-    const alternatives = enriched.slice(10, 20).map((r) => ({
+    const alternatives = enriched.slice(10, 20).map(r => ({
       ...r,
       summary: (r.summary || "") + " (alternativa)",
     }));
