@@ -8,7 +8,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",   // 👈 CAMBIAR AQUÍ
+    "moduleResolution": "node",   // 👈 CORREGIDO
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -16,7 +16,7 @@
     "paths": {
       "@/*": ["*"]
     },
-    "types": ["node", "next"]     // 👈 Aseguramos que cargue los tipos de Next
+    "types": ["node", "next"]     // 👈 IMPORTANTE
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
