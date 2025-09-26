@@ -1,7 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { buildQueries, TARGET_SITES } from "../../../lib/providers";
-import { dedupe, normalizeItem, priceWithin } from "../../../lib/normalize";
-import { haversineKm, geocodeDistrictCentroid } from "../../../lib/geo";
 import axios from "axios";
 
 export async function POST(req: NextRequest) {
