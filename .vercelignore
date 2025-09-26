@@ -1,0 +1,28 @@
+# Ignorar node_modules locales (Vercel instala sus propios)
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Ignorar lockfiles que no estén en la raíz del proyecto
+../package.json
+../package-lock.json
+../yarn.lock
+../pnpm-lock.yaml
+
+# Build outputs innecesarios
+.next/cache
+.next/standalone
+dist
+build
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Configs de IDE
+.vscode
+.idea
+*.swp
