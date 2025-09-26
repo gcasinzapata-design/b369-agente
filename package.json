@@ -2,12 +2,11 @@
   "name": "b369-internal-realty-agent",
   "private": true,
   "version": "1.4.3",
-  "scripts": {
-    "dev": "next dev -p 3000",
-    "build": "next build",
-    "start": "next start -p 3000",
-    "postinstall": "prisma generate || true"
-  },
+ "scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start"
+},
     "devDependencies": {
   "typescript": "^5.x.x",
   "@types/react": "^18.x.x",
