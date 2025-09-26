@@ -1,26 +1,31 @@
-// app/api/search/route.ts
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
+export async function POST(req: Request) {
+  try {
+    // Leemos el body de la petición
+    const body = await req.json();
 
-  const query = searchParams.get("q") || "";
+    // 👇 ejemplo: simular resultados de búsqueda
+    const results = [
+      { id: 1, name: "Departamento en Miraflores", price: 250000 },
+      { id: 2, name: "Casa en Surco", price: 350000 },
+    ];
 
-  // 🔍 aquí iría tu lógica, por ejemplo consulta a Prisma, fetch a API, etc.
-  const results = [
-    { id: 1, title: "Resultado A", query },
-    { id: 2, title: "Resultado B", query },
-  ];
+    const alternatives = [
+      { id: 3, name: "Loft en Barranco", price: 200000 },
+    ];
 
-  return NextResponse.json({ results });
-}
-
-export async function POST(req: NextRequest) {
-  const body = await req.json();
-
-  // Aquí procesas los datos recibidos
-  return NextResponse.json({
-    success: true,
-    received: body,
-  });
+    // Respuesta exitosa
+    return NextResponse.json({
+      results,
+      alternatives,
+      filters: body, // devuelvo lo que me mandes como filtros
+    });
+  } catch (err: any) {
+    console.error("Error en /api/search:", err);
+    return NextResponse.json(
+      { error: String(err) },
+      { status: 500 }
+    );
+  }
 }
