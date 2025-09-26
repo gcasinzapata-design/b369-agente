@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "npm install --save-dev typescript @types/react @types/node || true"
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "14.2.5",
@@ -15,10 +14,10 @@
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "typescript": "^5.6.3",
-    "@types/react": "^18.3.12",
-    "@types/node": "^20.14.12",
-    "eslint": "^8.57.0",
+    "typescript": "5.6.3",
+    "@types/react": "18.3.12",
+    "@types/node": "20.14.12",
+    "eslint": "8.57.0",
     "eslint-config-next": "14.2.5"
   }
 }
